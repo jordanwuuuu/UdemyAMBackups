@@ -44,12 +44,10 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
     renderNotes(notes, filters);
 })
 
-document.querySelector('#nameForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Stops page refresh
-    const eventName = e.target.elements.firstName.value;
-    console.log('>> Event Name:', eventName);
-    e.target.elements.firstName.value = '';
-})
+document.querySelector('#checkBox').addEventListener('change', function (e) {
+    console.log('?? Checked:',  event.target.checked);
+
+});
 
 // ---- REMOVE ALL NOTES BUTTON --//
 // document.querySelector('#remove_all_notes').addEventListener('click', function () {
