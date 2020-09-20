@@ -19,7 +19,8 @@ const renderNotes = function (notes, filters) {
     const filteredNotes = notes.filter(function (note) {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
     })
-    document.querySelector('#notes').innerHTML = '';
+    // document.querySelector('#notes').innerHTML = '';
+    document.querySelector('#notes').textContent = '';
     filteredNotes.forEach(function (note) {
         const noteElement = document.createElement('p')
         noteElement.textContent = note.title;
@@ -36,19 +37,32 @@ document.querySelector('#add_note').addEventListener('click', function (event) {
     document.querySelector('body').appendChild(p);
 })
 
-document.querySelector('#remove_all_notes').addEventListener('click', function () {
-    document.querySelectorAll('.note').forEach(function (note) {
-        note.remove();
-    })
-})
-document.querySelector('#remove_last_note').addEventListener('click', function () {
-    document.querySelectorAll('.note').forEach(function (note, index, array) {
-        if (index === array.length - 1) {
-            note.remove()
-        }
-    })
-})
+
+
 document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value;
     renderNotes(notes, filters);
 })
+
+document.querySelector('#nameForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Stops page refresh
+    const eventName = e.target.elements.firstName.value;
+    console.log('>> Event Name:', eventName);
+    e.target.elements.firstName.value = '';
+})
+
+// ---- REMOVE ALL NOTES BUTTON --//
+// document.querySelector('#remove_all_notes').addEventListener('click', function () {
+//     document.querySelectorAll('.note').forEach(function (note) {
+//         note.remove();
+//     })
+// })
+
+// ---- REMOVE LAST NOTE BUTTON --//
+// document.querySelector('#remove_last_note').addEventListener('click', function () {
+//     document.querySelectorAll('.note').forEach(function (note, index, array) {
+//         if (index === array.length - 1) {
+//             note.remove()
+//         }
+//     })
+// })

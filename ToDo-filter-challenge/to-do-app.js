@@ -1,10 +1,6 @@
-// 1. Set up div to contain To do
-// 2. Set up filters (searchtext) and wire up a new filter input to change it
-// 3. Create a render-To-Do function to render and rerender the latest filter data
-// Include how many to do left 
-// All rendered data
 
 const arrayOfIncompleteToDos = [];
+
 const toDosList = [{
     'title': 'Get a Coding job',
     'completed': true
@@ -18,6 +14,7 @@ const toDosList = [{
     'title': 'Save up 3 months living cost',
     'completed': false
 }]
+
 const filters = {
     searchText: '',
 };
@@ -28,7 +25,7 @@ const renderToDos = function (toDosList, filters) {
     })
     const incompleteToDos = filteredToDos.filter(function (todo) {
         return !todo.completed
-    }); 
+    });
     document.querySelector('#toDoList').innerHTML = '';
 
     const summaryOfTodos = document.createElement('h2')
@@ -43,6 +40,18 @@ const renderToDos = function (toDosList, filters) {
 }
 
 renderToDos(toDosList, filters);
+
+document.querySelector('#addNewTodDoForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const value = event.target.elements.newToDo.value;
+    const newItem = {
+        'title': value,
+        'completed': false
+    };
+    toDosList.push(newItem);
+    renderToDos(toDosList, filters)
+    event.target.elements.newToDo.value = '';
+})
 
 document.querySelector('#search-text').addEventListener('input', function (event) {
     filters.searchText = event.target.value;
