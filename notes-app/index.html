@@ -9,12 +9,13 @@
     <h3>App created by J Wu</h3>
     <p>Start writing your notes now</p>
     <input id='search-text' type='text' name='userInput' placeholder='Filter Notes'>
+    <select id="filter-By">
+        <option value="byEdited">Sort by last edited</option>
+        <option value="byCreated">Sort by recently created</option>
+        <option value="alphabetical">Sort Alphabetically</option>
+    </select>
     <div id='notes'></div>
     <button id='add_note'>Add Note</button>
-    <label>
-        <input id='checkBox' type='checkbox'> Interactive
-    </label>
-
     <!-- <button id='remove_last_note'>Remove Last Note</button> -->
     <!-- <button id='remove_all_notes'>Remove All Notes</button>  -->
     <script src='notes-app.js'> </script>

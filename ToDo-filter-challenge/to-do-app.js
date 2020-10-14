@@ -17,12 +17,16 @@ const toDosList = [{
 
 const filters = {
     searchText: '',
+    hideCompleted: false,
 };
 
 const renderToDos = function (toDosList, filters) {
     const filteredToDos = toDosList.filter(function (todo) {
-        return todo.title.toLowerCase().includes(filters.searchText.toLowerCase())
+        const searchTextMatch = todo.title.toLowerCase().includes(filters.searchText.toLowerCase());
+        const hideCompleted = !filters.completed || !todo.completed;
+        return searchTextMatch && hideCompleted;
     })
+
     const incompleteToDos = filteredToDos.filter(function (todo) {
         return !todo.completed
     });
@@ -56,6 +60,11 @@ document.querySelector('#addNewTodDoForm').addEventListener('submit', function (
 document.querySelector('#search-text').addEventListener('input', function (event) {
     filters.searchText = event.target.value;
     console.log('>> Search text:', filters.searchText);
+    renderToDos(toDosList, filters)
+})
+
+document.querySelector('#hide-completed').addEventListener('change', function (e) {
+    filters.hideCompleted = e.target.checked;
     renderToDos(toDosList, filters)
 })
 

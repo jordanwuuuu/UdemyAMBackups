@@ -14,7 +14,8 @@ const notes = [{
 const filters = {
     'searchText': '',
 }
-
+const user = {'name': 'Jordan', 'age': 27}
+JSON.stringify(user);
 const renderNotes = function (notes, filters) {
     const filteredNotes = notes.filter(function (note) {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
@@ -43,10 +44,8 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value;
     renderNotes(notes, filters);
 })
-
-document.querySelector('#checkBox').addEventListener('change', function (e) {
-    console.log('?? Checked:',  event.target.checked);
-
+document.querySelector('#filter-By').addEventListener('change', function (e) { 
+    console.log('filter value:', e.target.value);
 });
 
 // ---- REMOVE ALL NOTES BUTTON --//
