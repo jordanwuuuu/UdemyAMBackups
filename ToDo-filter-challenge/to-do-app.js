@@ -11,6 +11,7 @@ document.querySelector('#addNewToDoForm').addEventListener('submit', function (e
     event.preventDefault();
     const value = event.target.elements.newToDo.value;
     const newItem = {
+        'id': uuidv4(),
         'title': value,
         'completed': false
     };

@@ -1,3 +1,4 @@
+console.log(uuidv4());
 const geSavedNotesData = function () {
     const notesJSON = localStorage.getItem('notes')
     if (notesJSON !== null) {
@@ -9,12 +10,21 @@ const geSavedNotesData = function () {
 
 // Dom structure for note
 const generateNoteDOM = function (note) {
-    const noteElement = document.createElement('p')
+    const noteElement = document.createElement('div');
+    const textElement = document.createElement('span');
+    const button = document.createElement('button');
+    
+    
+    button.textContent = 'X';
+    noteElement.appendChild(button);
     if (note.title.length > 0) {
-        noteElement.textContent = note.title;
+        textElement.textContent = note.title;
     } else {
-        note.title = 'No Title';
+        textElement.textContent = 'No Title';
     }
+    
+    noteElement.appendChild(textElement);
+    
     return noteElement;
 }
 

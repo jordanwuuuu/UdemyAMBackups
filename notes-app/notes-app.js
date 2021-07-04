@@ -9,8 +9,9 @@ renderNotes(notes, filters);
 document.querySelector('#add_note').addEventListener('click', function (event) {
     event.target.textContent = 'Add another note';
     notes.push({
+        'id': uuidv4(),
         'title': '',
-        'body': ''
+        'body': '',
     })
     localStorage.setItem('notes', JSON.stringify(notes));
     renderNotes(notes, filters);

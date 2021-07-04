@@ -26,7 +26,7 @@ const renderToDos = function (toDoList, filters) {
     document.querySelector('#toDoList').innerHTML = '';
     document.querySelector('#toDoList').appendChild(generateSummaryOfIncompleteToDos(incompleteToDos));
 
-    document.querySelector('#toDoList').innerHTML = '';
+    // document.querySelector('#toDoList').innerHTML = '';
     filteredToDos.forEach(function (toDos) {
         document.querySelector('#toDoList').appendChild(createToDoDOMElements(toDos));
     })
@@ -34,13 +34,27 @@ const renderToDos = function (toDoList, filters) {
 
 // create To do DOM elements
 function createToDoDOMElements(toDos) {
-    const toDo = document.createElement('p')
+    const toDoElement = document.createElement('div');
+    const checkBoxElement = document.createElement('input');
+    const textElement = document.createElement('span');
+    const removeButton = document.createElement('button')
+
+    removeButton.textContent = 'X';
+    checkBoxElement.setAttribute('type', 'checkbox');
+
+
+    toDoElement.appendChild(checkBoxElement);
+
     if (toDos.title.length > 0) {
-        toDo.textContent = toDos.title
+        textElement.textContent = toDos.title
     } else {
-        toDo.textContent = 'No Title'
+        textElement.textContent = 'No Title'
     }
-    return toDo;
+
+    toDoElement.appendChild(textElement)
+    toDoElement.appendChild(removeButton)
+
+    return toDoElement;
 }
 
 function generateSummaryOfIncompleteToDos(incompleteToDos) {
